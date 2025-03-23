@@ -56,10 +56,127 @@ Follow the steps below to get the project up and running locally:
 4. Configure your database settings:
     - Ensure MySQL is installed and running on your local machine.
     - Create a new MySQL database (e.g., `user_management_api`).
-    - Update the `ormconfig.json` file with your MySQL credentials.
+    - Update the `config.json` file with your MySQL credentials.
 
 ---
 
-## API Documentation is in LMS
+## API Documentation 
+API Documentation
+
+1. Register a New User
+
+Endpoint: POST /users
+
+Request Body:
+
+{
+  "email": "john.doe@example.com",
+  "password": "securepassword",
+  "confirmPassword": "securepassword",
+  "title": "Mr",
+  "firstName": "John",
+  "lastName": "Doe",
+  "role": "admin"
+}
+
+Response:
+
+{
+  "id": 1,
+  "email": "john.doe@example.com",
+  "title": "Mr",
+  "firstName": "John",
+  "lastName": "Doe",
+  "role": "admin",
+  "message": "User registered successfully"
+}
+
+Validation Rules:
+
+email: Must be valid and unique.
+
+password: Minimum 8 characters, must match confirmPassword.
+
+title: Required, e.g., "Mr", "Ms", "Dr".
+
+firstName & lastName: Required, min 2 characters.
+
+role: Default is "user", valid values are "user" or "admin".
+
+2. Get All Users
+
+Endpoint: GET ALL USERS /users
+
+[
+  {
+    "id": 1,
+    "email": "john.doe@example.com",
+    "password": "securepassword",
+    "title": "Mr",
+    "firstName": "John",
+    "lastName": "Doe",
+    "role": "admin"
+  },
+  {
+    "id": 2,
+    "email": "john1.doe@example.com",
+    "password": "securepassword",
+    "title": "Mr",
+    "firstName": "John",
+    "lastName": "Doe",
+    "role": "admin"
+  }
+]
+
+3. Get User by ID
+
+Endpoint: GET /users/:id
+
+Example Request:
+
+GET http://localhost:3000/users/1
+
+Response:
+
+{
+  "id": 1,
+  "email": "john.doe@example.com",
+  "title": "Mr",
+  "firstName": "John",
+  "lastName": "Doe",
+  "role": "admin"
+}
+
+Note: Passwords are not included in the response for security.
+
+4. Update User
+
+Endpoint: PUT /users/:id
+
+Request Body:
+
+{
+  "email": "john.doe@example.com",
+  "title": "Dr",
+  "firstName": "John",
+  "lastName": "Smith",
+  "role": "admin"
+}
+
+Response:
+
+{
+  "message": "User updated successfully"
+}
+
+5. Delete User
+
+Endpoint: DELETE /users/:id
+
+Example Request:
+
+DELETE http://localhost:3000/users/1
+
+Response:
 
 
