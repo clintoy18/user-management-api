@@ -58,8 +58,6 @@ Follow the steps below to get the project up and running locally:
     - Create a new MySQL database (e.g., `user_management_api`).
     - Update the `config.json` file with your MySQL credentials.
 
----
-
 ## API Documentation 
 API Documentation
 
@@ -178,5 +176,8 @@ Example Request:
 DELETE http://localhost:3000/users/1
 
 Response:
+{
+  "message": "User deleted successfully"
+}
 
 
