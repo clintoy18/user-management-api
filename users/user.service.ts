@@ -17,6 +17,7 @@ export const userService = {
     getById,
     create,
     update,
+    delete: _delete,
 };
 
 const userRepository: Repository<User> = AppDataSource.getRepository(User);
@@ -60,4 +61,13 @@ async function update(id: number, params: UserAttributes): Promise<User> {
 
     Object.assign(user, params);
     return await userRepository.save(user);
+}
+
+async function _delete(id: number): Promise<void> {
+    const user = await getById(id);
+    if (!user) {
+        throw new Error("User not found");
+    }
+
+    await userRepository.remove(user);
 }
