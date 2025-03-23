@@ -11,6 +11,7 @@ router.get("/", getAll);
 router.get("/:id", getById);
 router.post("/", createSchema, create);
 router.put("/:id", updateSchema, update);
+router.delete("/:id", _delete);
 
 export default router;
 
@@ -53,6 +54,15 @@ async function update(req: Request, res: Response, next: NextFunction) {
     }
 }
 
+async function _delete(req: Request, res: Response, next: NextFunction) {
+    try {
+        await userService.delete(Number(req.params.id));
+        res.json({ message: "User deleted" });
+    } catch (error) {
+        next(error);
+    }
+}
+
 // Schema validation functions
 function createSchema(req: Request, res: Response, next: NextFunction) {
     const schema: Schema = Joi.object({
@@ -81,3 +91,5 @@ function updateSchema(req: Request, res: Response, next: NextFunction) {
 
     validateRequest(req, next, schema);
 }
+
+
